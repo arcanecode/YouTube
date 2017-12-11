@@ -1,4 +1,34 @@
-﻿$dir = "$($env:OneDrive)\Pluralsight\Azure\demos\course-01"
+﻿<#-----------------------------------------------------------------------------
+  Azure Helper Functions
+
+  Author: Robert C. Cain | @ArcaneCode | info@arcanetc.com
+          http://arcanecode.me
+ 
+  This module is Copyright (c) 2017 Robert C. Cain. All rights reserved.
+  The code herein is for demonstration purposes. No warranty or guarentee
+  is implied or expressly granted. 
+ 
+  This code may be used in your projects. 
+
+  This code may NOT be reproduced in whole or in part, in print, video, or
+  on the internet, without the express written consent of the author. 
+ -----------------------------------------------------------------------------#>
+
+<#-----------------------------------------------------------------------------
+  This code was used in a YouTube video, which can be found at:
+
+
+
+  in turn, that video demonstrated code for an article I wrote for SimpleTalk,
+  which you can find at:
+
+  http://bit.ly/acred01
+
+-----------------------------------------------------------------------------#>
+
+
+
+$dir = "$($env:OneDrive)\Pluralsight\Azure\demos\course-01"
 Set-Location $dir
 
 # Run a script with functions used by multiple scripts in this course
@@ -21,20 +51,23 @@ Set-PSSubscription $useSub
 Clear-Host
 Get-AzureRmResourceGroup | Format-Table
 
-# Set name of RG to Create
-$resourceGroupName = 'SomeTestRG'
-
 # Normal Way
+$resourceGroupName = 'NormalWayRG'
 New-AzureRmResourceGroup -Name $resourceGroupName `
                          -Location $location
 
+Get-AzureRmResourceGroup | Format-Table
 
 # Our way! Only create the resource group, if needed
+$resourceGroupName = 'NewImprovedWayRG'
 New-PSResourceGroup $resourceGroupName $location -Verbose
 
 Get-AzureRmResourceGroup | Format-Table
 
 # Clean up after ourselves
+$resourceGroupName = 'NormalWayRG'
+Remove-AzureRmResourceGroup -Name $resourceGroupName  -Force
+$resourceGroupName = 'NewImprovedWayRG'
 Remove-AzureRmResourceGroup -Name $resourceGroupName  -Force
 Get-AzureRmResourceGroup | Format-Table
 

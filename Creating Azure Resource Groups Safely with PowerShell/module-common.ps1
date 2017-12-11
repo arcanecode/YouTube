@@ -1,5 +1,5 @@
 ﻿<#-----------------------------------------------------------------------------
-  Powering Azure SQL With PowerShell
+  Azure Helper Functions
 
   Author: Robert C. Cain | @ArcaneCode | info@arcanetc.com
           http://arcanecode.me
@@ -95,7 +95,8 @@ function Connect-PSToAzure ()
         }
         catch
         {
-          # Don't sweat an error, just begin the manual login process
+          # Don't sweat an error if the file is gone, so just begin 
+          # the manual login process
           Add-AzureRMAccount  # Login
         }
       }
@@ -228,8 +229,8 @@ function New-PSResourceGroup ()
   Write-Verbose "Checking for Resource Group $ResourceGroupName"
 
   # Method 1 - Ignores errors
-  #$rgExists = Get-AzureRmResourceGroup -Name $ResourceGroupName `
-  #                                     -ErrorAction SilentlyContinue
+  $rgExists = Get-AzureRmResourceGroup -Name $ResourceGroupName `
+                                       -ErrorAction SilentlyContinue
 
   # Method 2 - Filters on this end
   $rgExists = Get-AzureRmResourceGroup |
