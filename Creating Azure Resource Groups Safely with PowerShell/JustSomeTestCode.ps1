@@ -17,7 +17,7 @@
 <#-----------------------------------------------------------------------------
   This code was used in a YouTube video, which can be found at:
 
-
+  http://bit.ly/acredyt01
 
   in turn, that video demonstrated code for an article I wrote for SimpleTalk,
   which you can find at:
